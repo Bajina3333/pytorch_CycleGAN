@@ -28,7 +28,11 @@
   - 嚴格鎖定 Cycle Loss 權重為 10，Identity Loss 權重為 5 (lambda_identity=0.5)，確保解剖位置不發生偏移。優化器採用 Adam，學習率固定為 0.0002 且 β1=0.5。
  
 - 訓練測試：
-  - 在此配置下，已經成功完成了 50 Epochs 與 200 Epochs 的訓練與效果比較。
+  - 在此配置下，已經成功完成了 50 Epochs 與 200 Epochs 的訓練與效果比較。<br/>
+  - Epochs 50：
+![Epochs 50](/results/medical_run/loss_convergence_smooth.png)
+  - Epochs 200：
+![Epochs 200](/results/medical_run_200/loss_convergence_smooth.png)
 
 ## Phase 2
 在確保無監督翻譯能力的基礎上，進一步思考如何利用既有的「配對資料集 (Paired Dataset)」來強化模型表現。
@@ -40,7 +44,11 @@
   - 重寫了 DataLoader 的讀取方式，新增了手動切換開關，讓訓練過程可以在「隨機讀取 (Unpaired / Random)」與「配對資料讀取 (Paired)」之間靈活調整。
 
 - 訓練測試：
-  - 在此配置下，已經成功完成了 50 Epochs 與 200 Epochs 的訓練與效果比較。
+  - 在此配置下，已經成功完成了 50 Epochs 與 200 Epochs 的訓練與效果比較。<br/>
+  - Epochs 50：
+![Epochs 50](/results/medical_paired/loss_convergence_smooth.png)
+  - Epochs 200：
+![Epochs 200](/results/medical_paired_200/loss_convergence_smooth.png)
 
  ## Phase 3
 為了進一步解決深層特徵丟失與邊界模糊的問題，目前正在嘗試將 Generator 從 U-Net 升級為 UNet++ (Nested UNet)。
@@ -52,7 +60,11 @@
   - 針對因為 UNet++ 海量特徵圖導致的 OOM (Out of Memory) 問題，成功導入 PyTorch 的梯度檢查點 (Gradient Checkpointing) 技術，以時間換取空間，大幅減少顯存佔用。
 
 - 目前進度：
-  - 已順利啟動訓練，目前正在進行 50 Epochs 的初步效果驗證與測試。
+  - 已順利啟動訓練，目前正在進行 50 Epochs 的初步效果驗證與測試。<br/>
+  - Epochs 50 (without Paired L1 Loss)：
+![Epochs 50](/results/unet2plus_run/loss_convergence_smooth.png)
+  - Epochs 50 (with Paired L1 Loss)：
+![Epochs 50](/results/unet2plus_paired/loss_convergence_smooth.png)
 
 # Engineering & Evaluation
 在模型架構之外，本專案也針對測試流程與評估準確性進行了大幅度的工程優化：
