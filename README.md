@@ -1,7 +1,7 @@
 # pytorch_CycleGAN
 本專案基於原始 PyTorch CycleGAN 框架進行深度改動，旨在實現精準的醫學影像翻譯（CBCT-to-CT）。專案的初期架構靈感與參數設定參考自醫學期刊論文 Liang 等人(2019)，並在後續階段針對配對資料集的優勢進行了 Loss Function 的改寫，目前正積極導入更深層的 UNet++ 架構以期獲得更極致的解剖結構保留效果。
 
-> 原始 CycleGAN 架構：https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix.git
+> 原始 CycleGAN 架構：https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix.git <br/>
 > 出自論文：https://doi.org/10.48550/arXiv.1703.10593 和 https://doi.org/10.48550/arXiv.1611.07004 <br/>
 > 初期架構參考論文：https://doi.org/10.48550/arXiv.1810.13350
 
@@ -92,7 +92,6 @@
 本專案使用現代化的 Python 3.11 與 PyTorch 2.4.0 配置，支援 CUDA 12.1 硬體加速，並使用 Linux 伺服器。以下為完整的建置指南：
 ### 自行安裝 Conda (Miniconda 或 Anaconda)
 > 注意：由於 GitHub 有單一檔案上傳的大小限制，本儲存庫無法直接附帶 Conda 的安裝檔。請務必先自行安裝 Conda 環境。 <br/>
-
 強烈推薦安裝輕量級的 Miniconda。Linux 伺服器可以透過以下指令從終端機直接下載並安裝：
   1. 從官方伺服器下載 Miniconda Linux 安裝檔
 ```
