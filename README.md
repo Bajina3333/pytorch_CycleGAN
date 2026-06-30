@@ -29,6 +29,8 @@
  
 - 訓練測試：
   - 在此配置下，已經成功完成了 50 Epochs 與 200 Epochs 的訓練與效果比較。<br/>
+
+- Loss Curve 走勢圖：<br/>
   - Epochs 50：
 ![Epochs 50](/results/medical_run/loss_convergence_smooth.png)
   - Epochs 200：
@@ -45,6 +47,8 @@
 
 - 訓練測試：
   - 在此配置下，已經成功完成了 50 Epochs 與 200 Epochs 的訓練與效果比較。<br/>
+ 
+- Loss Curve 走勢圖：<br/>
   - Epochs 50：
 ![Epochs 50](/results/medical_paired/loss_convergence_smooth.png)
   - Epochs 200：
@@ -61,6 +65,7 @@
 
 - 目前進度：
   - 已順利啟動訓練，目前正在進行 50 Epochs 的初步效果驗證與測試。<br/>
+- Loss Curve 走勢圖：<br/>
   - Epochs 50 (without Paired L1 Loss)：
 ![Epochs 50](/results/unet2plus_run/loss_convergence_smooth.png)
   - Epochs 50 (with Paired L1 Loss)：
