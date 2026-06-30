@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Whether Paired Loss Function useful</title>
+  </head>
+  <body>
+    <h2>Run v.s Paired (in epoch_200)</h2>
+    <h3>2BA007_slice_0014</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA007_slice_0014_real_A.png">
+              <img src="medical_run_200/test_latest/images/2BA007_slice_0014_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA007_slice_0014_fake_B.png">
+              <img src="medical_run_200/test_latest/images/2BA007_slice_0014_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA007_slice_0014_rec_A.png">
+              <img src="medical_run_200/test_latest/images/2BA007_slice_0014_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA007_slice_0014_real_B.png">
+              <img src="medical_run_200/test_latest/images/2BA007_slice_0014_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA007_slice_0014_fake_A.png">
+              <img src="medical_run_200/test_latest/images/2BA007_slice_0014_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA007_slice_0014_rec_B.png">
+              <img src="medical_run_200/test_latest/images/2BA007_slice_0014_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA007_slice_0014_real_A.png">
+              <img src="medical_paired_200/test_latest/images/2BA007_slice_0014_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA007_slice_0014_fake_B.png">
+              <img src="medical_paired_200/test_latest/images/2BA007_slice_0014_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA007_slice_0014_rec_A.png">
+              <img src="medical_paired_200/test_latest/images/2BA007_slice_0014_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA007_slice_0014_real_B.png">
+              <img src="medical_paired_200/test_latest/images/2BA007_slice_0014_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA007_slice_0014_fake_A.png">
+              <img src="medical_paired_200/test_latest/images/2BA007_slice_0014_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA007_slice_0014_rec_B.png">
+              <img src="medical_paired_200/test_latest/images/2BA007_slice_0014_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <h3>2BA028_slice_0073</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA028_slice_0073_real_A.png">
+              <img src="medical_run_200/test_latest/images/2BA028_slice_0073_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA028_slice_0073_fake_B.png">
+              <img src="medical_run_200/test_latest/images/2BA028_slice_0073_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA028_slice_0073_rec_A.png">
+              <img src="medical_run_200/test_latest/images/2BA028_slice_0073_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA028_slice_0073_real_B.png">
+              <img src="medical_run_200/test_latest/images/2BA028_slice_0073_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA028_slice_0073_fake_A.png">
+              <img src="medical_run_200/test_latest/images/2BA028_slice_0073_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BA028_slice_0073_rec_B.png">
+              <img src="medical_run_200/test_latest/images/2BA028_slice_0073_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA028_slice_0073_real_A.png">
+              <img src="medical_paired_200/test_latest/images/2BA028_slice_0073_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA028_slice_0073_fake_B.png">
+              <img src="medical_paired_200/test_latest/images/2BA028_slice_0073_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA028_slice_0073_rec_A.png">
+              <img src="medical_paired_200/test_latest/images/2BA028_slice_0073_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA028_slice_0073_real_B.png">
+              <img src="medical_paired_200/test_latest/images/2BA028_slice_0073_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA028_slice_0073_fake_A.png">
+              <img src="medical_paired_200/test_latest/images/2BA028_slice_0073_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BA028_slice_0073_rec_B.png">
+              <img src="medical_paired_200/test_latest/images/2BA028_slice_0073_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <h3>2BB007_slice_0080</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB007_slice_0080_real_A.png">
+              <img src="medical_run_200/test_latest/images/2BB007_slice_0080_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB007_slice_0080_fake_B.png">
+              <img src="medical_run_200/test_latest/images/2BB007_slice_0080_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB007_slice_0080_rec_A.png">
+              <img src="medical_run_200/test_latest/images/2BB007_slice_0080_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB007_slice_0080_real_B.png">
+              <img src="medical_run_200/test_latest/images/2BB007_slice_0080_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB007_slice_0080_fake_A.png">
+              <img src="medical_run_200/test_latest/images/2BB007_slice_0080_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB007_slice_0080_rec_B.png">
+              <img src="medical_run_200/test_latest/images/2BB007_slice_0080_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB007_slice_0080_real_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB007_slice_0080_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB007_slice_0080_fake_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB007_slice_0080_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB007_slice_0080_rec_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB007_slice_0080_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB007_slice_0080_real_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB007_slice_0080_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB007_slice_0080_fake_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB007_slice_0080_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB007_slice_0080_rec_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB007_slice_0080_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <h3>2BB075_slice_0003</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB075_slice_0003_real_A.png">
+              <img src="medical_run_200/test_latest/images/2BB075_slice_0003_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB075_slice_0003_fake_B.png">
+              <img src="medical_run_200/test_latest/images/2BB075_slice_0003_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB075_slice_0003_rec_A.png">
+              <img src="medical_run_200/test_latest/images/2BB075_slice_0003_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB075_slice_0003_real_B.png">
+              <img src="medical_run_200/test_latest/images/2BB075_slice_0003_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB075_slice_0003_fake_A.png">
+              <img src="medical_run_200/test_latest/images/2BB075_slice_0003_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB075_slice_0003_rec_B.png">
+              <img src="medical_run_200/test_latest/images/2BB075_slice_0003_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB075_slice_0003_real_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB075_slice_0003_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB075_slice_0003_fake_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB075_slice_0003_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB075_slice_0003_rec_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB075_slice_0003_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB075_slice_0003_real_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB075_slice_0003_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB075_slice_0003_fake_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB075_slice_0003_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB075_slice_0003_rec_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB075_slice_0003_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <h3>2BB109_slice_0165</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB109_slice_0165_real_A.png">
+              <img src="medical_run_200/test_latest/images/2BB109_slice_0165_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB109_slice_0165_fake_B.png">
+              <img src="medical_run_200/test_latest/images/2BB109_slice_0165_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB109_slice_0165_rec_A.png">
+              <img src="medical_run_200/test_latest/images/2BB109_slice_0165_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB109_slice_0165_real_B.png">
+              <img src="medical_run_200/test_latest/images/2BB109_slice_0165_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB109_slice_0165_fake_A.png">
+              <img src="medical_run_200/test_latest/images/2BB109_slice_0165_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BB109_slice_0165_rec_B.png">
+              <img src="medical_run_200/test_latest/images/2BB109_slice_0165_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB109_slice_0165_real_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB109_slice_0165_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB109_slice_0165_fake_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB109_slice_0165_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB109_slice_0165_rec_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB109_slice_0165_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB109_slice_0165_real_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB109_slice_0165_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB109_slice_0165_fake_A.png">
+              <img src="medical_paired_200/test_latest/images/2BB109_slice_0165_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BB109_slice_0165_rec_B.png">
+              <img src="medical_paired_200/test_latest/images/2BB109_slice_0165_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <h3>2BC007_slice_0215</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BC007_slice_0215_real_A.png">
+              <img src="medical_run_200/test_latest/images/2BC007_slice_0215_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BC007_slice_0215_fake_B.png">
+              <img src="medical_run_200/test_latest/images/2BC007_slice_0215_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BC007_slice_0215_rec_A.png">
+              <img src="medical_run_200/test_latest/images/2BC007_slice_0215_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BC007_slice_0215_real_B.png">
+              <img src="medical_run_200/test_latest/images/2BC007_slice_0215_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BC007_slice_0215_fake_A.png">
+              <img src="medical_run_200/test_latest/images/2BC007_slice_0215_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_run_200/test_latest/images/2BC007_slice_0215_rec_B.png">
+              <img src="medical_run_200/test_latest/images/2BC007_slice_0215_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BC007_slice_0215_real_A.png">
+              <img src="medical_paired_200/test_latest/images/2BC007_slice_0215_real_A.png" style="width:216px">
+            </a><br>
+            <p>real_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BC007_slice_0215_fake_B.png">
+              <img src="medical_paired_200/test_latest/images/2BC007_slice_0215_fake_B.png" style="width:216px">
+            </a><br>
+            <p>fake_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BC007_slice_0215_rec_A.png">
+              <img src="medical_paired_200/test_latest/images/2BC007_slice_0215_rec_A.png" style="width:216px">
+            </a><br>
+            <p>rec_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BC007_slice_0215_real_B.png">
+              <img src="medical_paired_200/test_latest/images/2BC007_slice_0215_real_B.png" style="width:216px">
+            </a><br>
+            <p>real_B</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BC007_slice_0215_fake_A.png">
+              <img src="medical_paired_200/test_latest/images/2BC007_slice_0215_fake_A.png" style="width:216px">
+            </a><br>
+            <p>fake_A</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word;" valign="top">
+          <p>
+            <a href="medical_paired_200/test_latest/images/2BC007_slice_0215_rec_B.png">
+              <img src="medical_paired_200/test_latest/images/2BC007_slice_0215_rec_B.png" style="width:216px">
+            </a><br>
+            <p>rec_B</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
