@@ -37,11 +37,12 @@
 ![Epochs 200](/results/medical_run_200/loss_convergence_smooth.png)
 
 - 數據比較：<br/>
+
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
 | Liang(2019)論文數據 | 29.85 ± 4.94 | 84.46 ± 12.40 | 0.85 ± 0.03 | 30.65 ± 1.36 |
-| epoch_50 | 24.27264 | 92.50987 | 0.94671 | 33.05643 |
-| epoch_200 | 14.69166 | 75.65056 | 0.960477 | 34.90914 |
+| Epoch_50 | 24.27264 | 92.50987 | 0.94671 | 33.05643 |
+| Epoch_200 | 14.69166 | 75.65056 | 0.960477 | 34.90914 |
 
 ## Phase 2
 在確保無監督翻譯能力的基礎上，進一步思考如何利用既有的「配對資料集 (Paired Dataset)」來強化模型表現。
@@ -61,6 +62,14 @@
   - Epochs 200：
 ![Epochs 200](/results/medical_paired_200/loss_convergence_smooth.png)
 
+- 數據比較：<br/>
+
+| 比較項目 | MAE | RMSE | SSIM | PSNR |
+| --- | --- | --- | --- | --- |
+| Liang(2019)論文數據 | 29.85 ± 4.94 | 84.46 ± 12.40 | 0.85 ± 0.03 | 30.65 ± 1.36 |
+| Epoch_50 | 20.21277 | 89.17818 | 0.951166 | 33.27695 |
+| Epoch_200 | 12.53239 | 69.76138 | 0.97451 | 35.65066 |
+
  ## Phase 3
 為了進一步解決深層特徵丟失與邊界模糊的問題，目前正在嘗試將 Generator 從 U-Net 升級為 UNet++ (Nested UNet)。
 
@@ -77,6 +86,13 @@
 ![Epochs 50](/results/unet2plus_run/loss_convergence_smooth.png)
   - Epochs 50 (with Paired L1 Loss)：
 ![Epochs 50](/results/unet2plus_paired/loss_convergence_smooth.png)
+
+- 數據比較：<br/>
+
+| 比較項目 | MAE | RMSE | SSIM | PSNR |
+| --- | --- | --- | --- | --- |
+| Liang(2019)論文數據 | 29.85 ± 4.94 | 84.46 ± 12.40 | 0.85 ± 0.03 | 30.65 ± 1.36 |
+
 
 # Engineering & Evaluation
 在模型架構之外，本專案也針對測試流程與評估準確性進行了大幅度的工程優化：
