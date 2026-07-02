@@ -36,7 +36,7 @@
   - Epochs 200：
 ![Epochs 200](/results/medical_run_200/loss_convergence_smooth.png)
 
-- 數據比較：<br/>
+- 數據比較：
 
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
@@ -62,7 +62,7 @@
   - Epochs 200：
 ![Epochs 200](/results/medical_paired_200/loss_convergence_smooth.png)
 
-- 數據比較：<br/>
+- 數據比較：
 
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
@@ -87,7 +87,7 @@
   - Epochs 50 (with Paired L1 Loss)：
 ![Epochs 50](/results/unet2plus_paired/loss_convergence_smooth.png)
 
-- 數據比較：<br/>
+- 數據比較：
 
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
