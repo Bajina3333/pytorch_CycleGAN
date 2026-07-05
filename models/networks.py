@@ -641,7 +641,7 @@ class LiangUnet2PlusGenerator(nn.Module):
                     if i == self.num_downs and j == 0:
                         outputs[node_name] = self.bottleneck(outputs[node_name])
                 else:
-                    """慢"""
+                    """慢
                     # 1. 先在外部拼接好特徵圖 (需要保留拼接結果傳給 checkpoint)
                     up_feat = self.upsamples[f"up_{i+1}_{j-1}"](outputs[f"x_{i+1}_{j-1}"])
                     skip_feats = [outputs[f"x_{i}_{k}"] for k in range(j)]
@@ -653,9 +653,9 @@ class LiangUnet2PlusGenerator(nn.Module):
                         outputs[node_name] = checkpoint(self.blocks[node_name], cat_feat, use_reentrant=False)
                     else:
                         outputs[node_name] = self.blocks[node_name](cat_feat)
+                    """
                     
-                    
-                    """快
+                    """快"""
                     # 嵌套及解碼器傳導
                     # 1. 取得下方節點並進行上採樣
                     up_feat = self.upsamples[f"up_{i+1}_{j-1}"](outputs[f"x_{i+1}_{j-1}"])
@@ -668,7 +668,7 @@ class LiangUnet2PlusGenerator(nn.Module):
                     
                     # 4. 通過融合卷積層
                     outputs[node_name] = self.blocks[node_name](cat_feat)
-                    """
+                    
         # 從最高、最右側的節點 (x_0_5) 導出最終醫療影像結果
         final_node = f"x_0_{self.num_downs}"
         return self.final(outputs[final_node])
