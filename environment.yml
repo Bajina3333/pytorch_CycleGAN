@@ -4,7 +4,6 @@ channels:
   - pytorch
   - nvidia
   - conda-forge
-  - defaults
 
 dependencies:  
   # 基礎環境與核心深度學習框架 (支援 CUDA 12.1 加速)
