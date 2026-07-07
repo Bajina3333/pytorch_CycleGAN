@@ -8,7 +8,7 @@
 # Project Stages
 本專案的演進主要分為以下三個階段：
 
-- Phase 1: 對齊 Liang (2019) 論文架構
+- Phase 1: 對齊 Liang(2019) 論文架構
 - Phase 2: 活用配對資料集優勢
 - Phase 3: 生成器升級為 UNet++ (進行中)
 
