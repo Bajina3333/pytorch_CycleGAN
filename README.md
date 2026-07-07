@@ -82,9 +82,11 @@
 - 目前進度：
   - 已順利啟動訓練，目前正在進行 50 Epochs 的初步效果驗證與測試。<br/>
 - Loss Curve 走勢圖：<br/>
-  - Epochs 50 (without Paired L1 Loss)：
+  - Without Paired L1 Loss
+    - Epochs 50：
 ![Epochs 50](/results/unet2plus_run/loss_convergence_smooth.png)
-  - Epochs 50 (with Paired L1 Loss)：
+  - With Paired L1 Loss
+    - Epochs 50：
 ![Epochs 50](/results/unet2plus_paired/loss_convergence_smooth.png)
 
 - 數據比較：
@@ -92,7 +94,8 @@
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
 | Liang(2019)論文數據 | 29.85 ± 4.94 | 84.46 ± 12.40 | 0.85 ± 0.03 | 30.65 ± 1.36 |
-
+| (without) Epoch_50 | 21.1791 | 81.34518 | 0.945963 | 34.14611 |
+| (with) Epoch_50 | 21.53708 | 90.80296 | 0.945392 | 33.18873 |
 
 # Engineering & Evaluation
 在模型架構之外，本專案也針對測試流程與評估準確性進行了大幅度的工程優化：
