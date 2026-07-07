@@ -80,7 +80,7 @@
 - 實際圖片比較：<br/>
 > 完整檔案為 /results 的 Paired.html 與 RunVSPaired.html<br/>
 
-  - Paired L1 Loss 的訓練Epochs 長短比較：
+  - Paired L1 Loss 的訓練 Epochs 短長比較：
 ![Paired.png](/results/html_img/Paired.png)
   - 有無加入 Paired L1 Loss 的比較：
 ![MedicalVSPaired.png](/results/html_img/MedicalVSPaired.png)
