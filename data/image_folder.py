@@ -29,6 +29,7 @@ IMG_EXTENSIONS = [
     ".TIFF",
     ".dcm", ".DCM",
     ".dicom", ".DICOM",
+    ".npy", ".NPY"
 ]
 
 
@@ -65,38 +66,14 @@ class ImageFolder(data.Dataset):
         self.loader = loader
 
     def __getitem__(self, index):
-        A_path = self.A_paths[index % self.A_size]
-        if self.opt.serial_batches:
-            index_B = index % self.B_size
+        path = self.imgs[index]
+        img = self.loader(path)
+        if self.transform is not None:
+            img = self.transform(img)
+        if self.return_paths:
+            return img, path
         else:
-            index_B = random.randint(0, self.B_size - 1)
-        B_path = self.B_paths[index_B]
-
-        # 使用 pydicom 讀取 DICOM 檔案
-        A_dcm = pydicom.dcmread(A_path)
-        B_dcm = pydicom.dcmread(B_path)
-        
-        # 提取像素矩陣並轉為 float32
-        A_img = A_dcm.pixel_array.astype(np.float32)
-        B_img = B_dcm.pixel_array.astype(np.float32)
-
-        # 定義醫療 HU 值範圍
-        HU_MIN = -1000.0
-        HU_MAX = 3000.0
-        
-        # 對 A (CBCT) 與 B (CT) 進行極端值截斷，避免金屬偽影的超高數值破壞比例
-        A_img = np.clip(A_img, HU_MIN, HU_MAX)
-        B_img = np.clip(B_img, HU_MIN, HU_MAX)
-        
-        # 線性映射到 CycleGAN 規定的 [-1, 1] 區間
-        A_img = 2.0 * (A_img - HU_MIN) / (HU_MAX - HU_MIN) - 1.0
-        B_img = 2.0 * (B_img - HU_MIN) / (HU_MAX - HU_MIN) - 1.0
-
-        # 轉為 PyTorch Tensor，並加上 Channel 維度變成 [3]
-        A = torch.from_numpy(A_img).unsqueeze(0)
-        B = torch.from_numpy(B_img).unsqueeze(0)
-        
-        return {"A": A, "B": B, "A_paths": A_path, "B_paths": B_path}
+            return img
 
     def __len__(self):
         return len(self.imgs)

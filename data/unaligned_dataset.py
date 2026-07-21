@@ -40,6 +40,46 @@ class UnalignedDataset(BaseDataset):
         output_nc = self.opt.input_nc if btoA else self.opt.output_nc  # get the number of channels of output image
         self.transform_A = get_transform(self.opt, grayscale=(input_nc == 1))
         self.transform_B = get_transform(self.opt, grayscale=(output_nc == 1))
+        
+    def load_medical_slice(self, path):
+        """通用載入函式：自動判斷副檔名並返回範圍 [-1, 1] 的 2D float32 矩陣"""
+        ext = os.path.splitext(path)[1].lower()
+        
+        # 情況 A：前處理好的 .npy 檔案
+        if ext == '.npy':
+            img = np.load(path)
+            
+        # 情況 B：原始 .dcm 檔案
+        elif ext in ['.dcm', '.dicom']:
+            dcm = pydicom.dcmread(path)
+            img = dcm.pixel_array.astype(np.float32)
+            
+            # 還原真實 HU 值 (Slope / Intercept)
+            slope = getattr(dcm, 'RescaleSlope', 1.0)
+            intercept = getattr(dcm, 'RescaleIntercept', 0.0)
+            img = img * slope + intercept
+            
+            # 進行 HU 值 Clip 與歸一化到 [-1, 1]
+            HU_MIN, HU_MAX = -1000.0, 3000.0
+            img = np.clip(img, HU_MIN, HU_MAX)
+            img = 2.0 * (img - HU_MIN) / (HU_MAX - HU_MIN) - 1.0
+        else:
+            raise ValueError(f"不支援的檔案格式: {path}")
+
+        # 尺寸保護：確保矩陣大小為 512x512
+        h, w = img.shape
+        if h != 512 or w != 512:
+            pad_h = max(512 - h, 0)
+            pad_w = max(512 - w, 0)
+            top, left = pad_h // 2, pad_w // 2
+            bottom, right = pad_h - top, pad_w - left
+            img = np.pad(img, ((top, bottom), (left, right)), mode='constant', constant_values=-1.0)
+            h, w = img.shape
+            if h > 512 or w > 512:
+                sh, sw = (h - 512) // 2, (w - 512) // 2
+                img = img[sh:sh+512, sw:sw+512]
+                
+        return img
 
     def __getitem__(self, index):
         """Return a data point and its metadata information.
@@ -68,55 +108,13 @@ class UnalignedDataset(BaseDataset):
         B_path = self.B_paths[index_B]
         """
 
-        # 使用 pydicom 讀取 DICOM 檔案
-        A_dcm = pydicom.dcmread(A_path)
-        B_dcm = pydicom.dcmread(B_path)
-        
-        # 提取像素矩陣並轉為 float32
-        A_img = A_dcm.pixel_array.astype(np.float32)
-        B_img = B_dcm.pixel_array.astype(np.float32)
+        # 自動依據檔案類型載入並前處理
+        A_img = self.load_medical_slice(A_path)
+        B_img = self.load_medical_slice(B_path)
 
-        # 執行數值正規化
-        HU_MIN = -1000.0
-        HU_MAX = 3000.0
-        A_img = np.clip(A_img, HU_MIN, HU_MAX)
-        B_img = np.clip(B_img, HU_MIN, HU_MAX)
-        A_img = 2.0 * (A_img - HU_MIN) / (HU_MAX - HU_MIN) - 1.0
-        B_img = 2.0 * (B_img - HU_MIN) / (HU_MAX - HU_MIN) - 1.0
-        
-        # 嚴格將尺寸控制在 512x512
-        def pad_or_crop_to_512(img):
-            h, w = img.shape
-            
-            # 計算長寬距離 512 還差多少
-            pad_h = max(512 - h, 0)
-            pad_w = max(512 - w, 0)
-            
-            # 分配到上下左右 (置中 Padding)
-            top = pad_h // 2
-            bottom = pad_h - top
-            left = pad_w // 2
-            right = pad_w - left
-            
-            # 使用 -1.0 (代表空氣 HU=-1000) 來填充邊緣
-            img = np.pad(img, ((top, bottom), (left, right)), mode='constant', constant_values=-1.0)
-            
-            # 萬一遇到少數長或寬大於 512 的極端病患，進行中心裁剪 (Center Crop)
-            h, w = img.shape
-            if h > 512 or w > 512:
-                start_h = (h - 512) // 2
-                start_w = (w - 512) // 2
-                img = img[start_h : start_h+512, start_w : start_w+512]
-                
-            return img
-
-        # 對 A 與 B 套用尺寸校正
-        A_img = pad_or_crop_to_512(A_img)
-        B_img = pad_or_crop_to_512(B_img)
-
-        # 轉為 PyTorch Tensor，並加上 Channel 維度
-        A = torch.from_numpy(A_img).unsqueeze(0)
-        B = torch.from_numpy(B_img).unsqueeze(0)
+        # 轉為 PyTorch Single-Channel Tensor (1, 512, 512)
+        A = torch.from_numpy(A_img).unsqueeze(0).float()
+        B = torch.from_numpy(B_img).unsqueeze(0).float()
 
         return {"A": A, "B": B, "A_paths": A_path, "B_paths": B_path}
 
