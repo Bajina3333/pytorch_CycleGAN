@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>medical_run v.s 1_medical_run</title>
+    <style>
+      /* 定義圖片包裹容器的樣式 */
+      .img-crop-container {
+        width: 216px;
+        height: 216px;
+        overflow: hidden; /* 把超出的部分裁掉 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* 調整圖片本身，放大並偏移以裁切黑邊 */
+      .img-crop-container img {
+        width: 100%;      /* 將圖片放大 20% */
+        height: 100%;     /* 將圖片放大 20% */
+        object-fit: cover; /* 確保圖片填滿且不會變形 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Comparison of CycleGAN with and without preprocessing</h1>
+    <h2>> Layout Instructions:</h2> 
+    <h3>In each row of the table, the three images on the left represent CBCT converted to CT and then reconstructed back to CBCT (CBCT → sCT → rec_CBCT), while the three images on the right represent CT converted to CBCT and then reconstructed back to CT (CT → sCBCT → rec_CT).</h3>
+    <h2>> Table Comparison:</h2> 
+    <h3>The top row of the table for each patient's image slice shows those without preprocessing, while the bottom row shows those with preprocessing.</h3>
+    <h2>> Image analysis: </h2>
+    <h3>The sCT and sCBCT reconstructed images should resemble the original CT and CBCT images as closely as possible; similarly, the rec_CBCT and rec_CT reconstructed from sCT and sCBCT should also resemble the original CBCT and CT images as closely as possible.</h3>
+    <p>&nbsp;</p>
+    <h3>>> Patient Image Slices: 2BA014_slice_0103</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA014_slice_0103_real_A.png">
+              <img src="medical_run/test_latest/images/2BA014_slice_0103_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA014_slice_0103_fake_B.png">
+              <img src="medical_run/test_latest/images/2BA014_slice_0103_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA014_slice_0103_rec_A.png">
+              <img src="medical_run/test_latest/images/2BA014_slice_0103_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA014_slice_0103_real_B.png">
+              <img src="medical_run/test_latest/images/2BA014_slice_0103_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA014_slice_0103_fake_A.png">
+              <img src="medical_run/test_latest/images/2BA014_slice_0103_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA014_slice_0103_rec_B.png">
+              <img src="medical_run/test_latest/images/2BA014_slice_0103_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA014_slice_0103_real_A.png">
+              <img src="1_medical_run/test_latest/images/2BA014_slice_0103_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA014_slice_0103_fake_B.png">
+              <img src="1_medical_run/test_latest/images/2BA014_slice_0103_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA014_slice_0103_rec_A.png">
+              <img src="1_medical_run/test_latest/images/2BA014_slice_0103_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA014_slice_0103_real_B.png">
+              <img src="1_medical_run/test_latest/images/2BA014_slice_0103_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA014_slice_0103_fake_A.png">
+              <img src="1_medical_run/test_latest/images/2BA014_slice_0103_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA014_slice_0103_rec_B.png">
+              <img src="1_medical_run/test_latest/images/2BA014_slice_0103_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <h3>>> Patient Image Slices: 2BA049_slice_0078</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA049_slice_0078_real_A.png">
+              <img src="medical_run/test_latest/images/2BA049_slice_0078_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA049_slice_0078_fake_B.png">
+              <img src="medical_run/test_latest/images/2BA049_slice_0078_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA049_slice_0078_rec_A.png">
+              <img src="medical_run/test_latest/images/2BA049_slice_0078_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA049_slice_0078_real_B.png">
+              <img src="medical_run/test_latest/images/2BA049_slice_0078_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA049_slice_0078_fake_A.png">
+              <img src="medical_run/test_latest/images/2BA049_slice_0078_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA049_slice_0078_rec_B.png">
+              <img src="medical_run/test_latest/images/2BA049_slice_0078_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA049_slice_0078_real_A.png">
+              <img src="1_medical_run/test_latest/images/2BA049_slice_0078_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA049_slice_0078_fake_B.png">
+              <img src="1_medical_run/test_latest/images/2BA049_slice_0078_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA049_slice_0078_rec_A.png">
+              <img src="1_medical_run/test_latest/images/2BA049_slice_0078_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA049_slice_0078_real_B.png">
+              <img src="1_medical_run/test_latest/images/2BA049_slice_0078_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA049_slice_0078_fake_A.png">
+              <img src="1_medical_run/test_latest/images/2BA049_slice_0078_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA049_slice_0078_rec_B.png">
+              <img src="1_medical_run/test_latest/images/2BA049_slice_0078_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <h3>>> Patient Image Slices: 2BA063_slice_0091</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA063_slice_0091_real_A.png">
+              <img src="medical_run/test_latest/images/2BA063_slice_0091_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA063_slice_0091_fake_B.png">
+              <img src="medical_run/test_latest/images/2BA063_slice_0091_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA063_slice_0091_rec_A.png">
+              <img src="medical_run/test_latest/images/2BA063_slice_0091_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA063_slice_0091_real_B.png">
+              <img src="medical_run/test_latest/images/2BA063_slice_0091_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA063_slice_0091_fake_A.png">
+              <img src="medical_run/test_latest/images/2BA063_slice_0091_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BA063_slice_0091_rec_B.png">
+              <img src="medical_run/test_latest/images/2BA063_slice_0091_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA063_slice_0091_real_A.png">
+              <img src="1_medical_run/test_latest/images/2BA063_slice_0091_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA063_slice_0091_fake_B.png">
+              <img src="1_medical_run/test_latest/images/2BA063_slice_0091_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA063_slice_0091_rec_A.png">
+              <img src="1_medical_run/test_latest/images/2BA063_slice_0091_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA063_slice_0091_real_B.png">
+              <img src="1_medical_run/test_latest/images/2BA063_slice_0091_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA063_slice_0091_fake_A.png">
+              <img src="1_medical_run/test_latest/images/2BA063_slice_0091_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BA063_slice_0091_rec_B.png">
+              <img src="1_medical_run/test_latest/images/2BA063_slice_0091_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <h3>>> Patient Image Slices: 2BB007_slice_0076</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB007_slice_0076_real_A.png">
+              <img src="medical_run/test_latest/images/2BB007_slice_0076_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB007_slice_0076_fake_B.png">
+              <img src="medical_run/test_latest/images/2BB007_slice_0076_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB007_slice_0076_rec_A.png">
+              <img src="medical_run/test_latest/images/2BB007_slice_0076_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB007_slice_0076_real_B.png">
+              <img src="medical_run/test_latest/images/2BB007_slice_0076_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB007_slice_0076_fake_A.png">
+              <img src="medical_run/test_latest/images/2BB007_slice_0076_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB007_slice_0076_rec_B.png">
+              <img src="medical_run/test_latest/images/2BB007_slice_0076_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB007_slice_0076_real_A.png">
+              <img src="1_medical_run/test_latest/images/2BB007_slice_0076_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB007_slice_0076_fake_B.png">
+              <img src="1_medical_run/test_latest/images/2BB007_slice_0076_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB007_slice_0076_rec_A.png">
+              <img src="1_medical_run/test_latest/images/2BB007_slice_0076_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB007_slice_0076_real_B.png">
+              <img src="1_medical_run/test_latest/images/2BB007_slice_0076_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB007_slice_0076_fake_A.png">
+              <img src="1_medical_run/test_latest/images/2BB007_slice_0076_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB007_slice_0076_rec_B.png">
+              <img src="1_medical_run/test_latest/images/2BB007_slice_0076_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <h3>>> Patient Image Slices: 2BB017_slice_0013</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB017_slice_0013_real_A.png">
+              <img src="medical_run/test_latest/images/2BB017_slice_0013_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB017_slice_0013_fake_B.png">
+              <img src="medical_run/test_latest/images/2BB017_slice_0013_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB017_slice_0013_rec_A.png">
+              <img src="medical_run/test_latest/images/2BB017_slice_0013_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB017_slice_0013_real_B.png">
+              <img src="medical_run/test_latest/images/2BB017_slice_0013_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB017_slice_0013_fake_A.png">
+              <img src="medical_run/test_latest/images/2BB017_slice_0013_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BB017_slice_0013_rec_B.png">
+              <img src="medical_run/test_latest/images/2BB017_slice_0013_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB017_slice_0013_real_A.png">
+              <img src="1_medical_run/test_latest/images/2BB017_slice_0013_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB017_slice_0013_fake_B.png">
+              <img src="1_medical_run/test_latest/images/2BB017_slice_0013_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB017_slice_0013_rec_A.png">
+              <img src="1_medical_run/test_latest/images/2BB017_slice_0013_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB017_slice_0013_real_B.png">
+              <img src="1_medical_run/test_latest/images/2BB017_slice_0013_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB017_slice_0013_fake_A.png">
+              <img src="1_medical_run/test_latest/images/2BB017_slice_0013_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BB017_slice_0013_rec_B.png">
+              <img src="1_medical_run/test_latest/images/2BB017_slice_0013_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <h3>>> Patient Image Slices: 2BC014_slice_0156</h3>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BC014_slice_0156_real_A.png">
+              <img src="medical_run/test_latest/images/2BC014_slice_0156_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BC014_slice_0156_fake_B.png">
+              <img src="medical_run/test_latest/images/2BC014_slice_0156_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BC014_slice_0156_rec_A.png">
+              <img src="medical_run/test_latest/images/2BC014_slice_0156_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BC014_slice_0156_real_B.png">
+              <img src="medical_run/test_latest/images/2BC014_slice_0156_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BC014_slice_0156_fake_A.png">
+              <img src="medical_run/test_latest/images/2BC014_slice_0156_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="medical_run/test_latest/images/2BC014_slice_0156_rec_B.png">
+              <img src="medical_run/test_latest/images/2BC014_slice_0156_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table border="1" style="table-layout: fixed;">
+      <tr>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BC014_slice_0156_real_A.png">
+              <img src="1_medical_run/test_latest/images/2BC014_slice_0156_real_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CBCT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BC014_slice_0156_fake_B.png">
+              <img src="1_medical_run/test_latest/images/2BC014_slice_0156_fake_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCT (Synthetic CT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BC014_slice_0156_rec_A.png">
+              <img src="1_medical_run/test_latest/images/2BC014_slice_0156_rec_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CBCT (Reconstructed CBCT)</p>
+          </p>
+        </td>
+        <td style="width: 50px; border-top:none; border-bottom:none;"></td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BC014_slice_0156_real_B.png">
+              <img src="1_medical_run/test_latest/images/2BC014_slice_0156_real_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>CT (Original image)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BC014_slice_0156_fake_A.png">
+              <img src="1_medical_run/test_latest/images/2BC014_slice_0156_fake_A.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>sCBCT (Synthetic CBCT)</p>
+          </p>
+        </td>
+        <td halign="center" style="word-wrap: break-word; text-align: center;" valign="top">
+          <p>
+            <div class="img-crop-container">
+              <a href="1_medical_run/test_latest/images/2BC014_slice_0156_rec_B.png">
+              <img src="1_medical_run/test_latest/images/2BC014_slice_0156_rec_B.png" style="width:512px">
+              </a><br>
+            </div>
+            <p>rec_CT (Reconstructed CT)</p>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
