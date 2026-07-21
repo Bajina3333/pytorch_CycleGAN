@@ -154,6 +154,9 @@
 <br/>
 
 - 實際圖片比較：<br/>
+> 完整檔案為 /results 的 Preprocessing.html<br/>
+
+![Preprocessing](/results/html_img/Preprocessing.png)
 
 # Engineering & Evaluation
 在模型架構之外，本專案也針對測試流程與評估準確性進行了大幅度的工程優化：
