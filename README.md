@@ -142,19 +142,15 @@
   - 支援將前處理後的數據直接輸出為 .npy 矩陣格式；同時優化了 DataLoader，使其能在訓練時動態兼容 .npy 與 .dcm 兩種輸入格式。 
 
 - Loss Curve 走勢圖：<br/>
-  - Without Paired L1 Loss
-    - Epochs 50：
+  - Epochs 50：
 ![Epochs 50](/results/1_medical_run/loss_convergence_smooth.png)
-  - With Paired L1 Loss
-    - Epochs 50：
-![Epochs 50](/results/1_medical_paired/loss_convergence_smooth.png)
 
 - 數據比較：進行 Liang(2019)論文數據、Phase 1 數據與進行前處理後的數據比較。Phase 1 數據與進行前處理後的數據都是進行 50 epochs 的比較。<br/>
 
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
 | Liang(2019)論文數據 | 29.85 ± 4.94 | 84.46 ± 12.40 | 0.85 ± 0.03 | 30.65 ± 1.36 |
-| Phase 1 | 24.27264 | 92.50987 | 0.94671 | 33.05643 |
+| Phase 1 | 24.27 ± 5.64 | 92.51 ± 18.27 | 0.95 ± 0.01 | 33.06 ± 1.92 |
 <br/>
 
 - 實際圖片比較：<br/>
