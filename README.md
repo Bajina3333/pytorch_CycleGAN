@@ -12,7 +12,7 @@
   - Phase 1：對齊 Liang(2019) 論文架構
   - Phase 2：活用配對資料集優勢
   - Phase 3：生成器升級為 UNet++ (進行中)
-- Stage 2：（針對資料集做前處理，以 Phase 1、2 的模型做訓練）
+- Stage 2：（針對資料集做前處理，以 Phase 1 的模型做訓練）
   - Phase 4：消除 CBCT 的誤差 (進行中)
 
 ## Phase 1
@@ -158,7 +158,6 @@
 <br/>
 
 - 實際圖片比較：<br/>
-> 完整檔案為 /results 的 <br/>
 
 # Engineering & Evaluation
 在模型架構之外，本專案也針對測試流程與評估準確性進行了大幅度的工程優化：
