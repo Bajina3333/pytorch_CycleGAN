@@ -8,13 +8,13 @@
 
 # Project Stages
 本專案的演進主要分為以下幾個階段：
+> 註：Stage 1 僅做 HU 值截斷至 [-1000,3000] 與歸一化至 [-1,1]、尺寸校正為 512x512。<br/>
 - Stage 1：（針對模型本身的改動）
-> 註：僅做 HU 值截斷至 [-1000,3000] 與歸一化至 [-1,1]、尺寸校正為 512x512。<br/>
   - Phase 1：對齊 Liang(2019) 論文架構
   - Phase 2：活用配對資料集優勢
-  - Phase 3：生成器升級為 UNet++ (進行中)
+  - Phase 3：生成器升級為 UNet++
 - Stage 2：（針對資料集做前處理，以 Phase 1 的模型做訓練）
-  - Phase 4：消除 CBCT 的誤差 (進行中)
+  - Phase 4：建立與套用 Mask 以及 Clipping
 
 ## Phase 1
 本階段的核心目標是捨棄官方預設的「通用型轉換」架構，將模型打造成符合醫療影像高精度需求的專屬架構。
@@ -144,7 +144,7 @@
   - Epochs 200：
 ![Epochs 200](/results/mask_run_200/loss_convergence_smooth.png)
 
-- 數據比較：進行 Liang(2019)論文數據、Phase 1 數據與此階段的數據比較。Phase 1 數據與進行前處理後的數據都是進行 200 epochs 的比較。<br/>
+- 數據比較：進行 Liang(2019)論文數據、Phase 1 數據與 Phase 4(此階段)的數據比較。Phase 1 數據與 Phase 4(此階段)的數據都是進行 200 epochs 的比較。<br/>
 
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
@@ -154,10 +154,19 @@
 <br/>
 
 - 實際圖片比較：<br/>
-> 完整檔案為 /results 的 Preprocessing.html<br/>
+> 完整檔案為 /results 的 Paired.html 與 RunVSPaired.html<br/>
 
+  - Paired L1 Loss 的訓練 Epochs 短長比較：
+![Paired.png](/results/html_img/Paired.png)
+  - 有無加入 Paired L1 Loss 的比較：
+![MedicalVSPaired.png](/results/html_img/MedicalVSPaired.png)
+
+- 實際圖片比較：<br/>
+> 完整檔案為 /results 的 MedicalVSMask.html 與 Mask.html<br/>
+  - Phase1 與 Phase 4(此階段)比較：
 ![MedicalVSMask](/results/html_img/MedicalVSMask.png)
-![Preprocessing](/results/html_img/Preprocessing.png)
+  - Phase 4(此階段)的訓練 Epochs 短長比較：
+![Mask](/results/html_img/Mask.png)
 
 # Engineering & Evaluation
 在模型架構之外，本專案也針對測試流程與評估準確性進行了大幅度的工程優化：
