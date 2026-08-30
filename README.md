@@ -3,7 +3,7 @@
 
 > 原始 CycleGAN 架構：https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix.git <br/>
 > 出自論文：https://doi.org/10.48550/arXiv.1703.10593 和 https://doi.org/10.48550/arXiv.1611.07004 <br/>
-> 初期架構參考論文：https://doi.org/10.48550/arXiv.1810.13350
+> 初期架構參考論文：https://doi.org/10.48550/arXiv.1810.13350 <br/>
 > TotalSegmentator：https://github.com/wasserth/TotalSegmentator (論文：https://arxiv.org/abs/2208.05868)
 
 # Project Stages
