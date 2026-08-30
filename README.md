@@ -126,36 +126,36 @@
 ![u2_MedicalVSPaired](/results/html_img/u2_MedicalVSPaired.png)
 
  ## Phase 4
-在跨機構或不同設備來源的數據集中，CBCT 的 HU 值往往缺乏標準物理定義，且容易受到散射線影響，導致不同病患間出現強度不一致與數值漂移（Value Shift）的問題。例如空氣區域在某些病患的 CBCT 中數值可能高達數百，而非標準的 -1000。
+在跨機構或多設備來源的醫療數據集中，CBCT 的灰階值缺乏標準物理定義且散射雜訊嚴重，導致不同病患間存在顯著的強度不一致與數值漂移（Value Shift）。
 
-- 背景強制鎖定與去噪
-  - 善用數據集提供的 Patient Outline binary Mask，將背景空氣區域強制歸一化為 -1.0（對應 CycleGAN 的最暗像素值）。
+- TotalSegmentator 高精度身體輪廓提取
+  - 依據解剖結構清晰的標準真實 CT 影像，利用深度學習分割工具 TotalSegmentator 自動生成精準的身體輪廓遮罩（Body Mask），將體外床板、去臉邊界殘留與背景雜訊完全剔除乾淨。
 
-- 基於百分位數的動態強度標準化
-  - CBCT 影像：排除背景後，僅針對人體組織內部（Mask > 0）計算動態百分位數，消除極端值（如金屬偽影）後線性對齊至 [-1, 1] 區間。
-  - CT 影像：維持標準 HU 範圍 [-1000,3000] 進行剪裁與歸一化，同樣強制將背景鎖定為 -1.0。
+- 雙模態 Mask 同步套用
+  - 將基於 CT 建立的高精度 Body Mask 同步套用至對位好的 CBCT 與 CT 影像中，強制將 Mask 外部（人體外部空氣與背景）固定設為 -1.0（對應 CycleGAN 最暗基準值），使所有病患的體外區域完全一致。
 
-- 切片過濾
-  - 改用 Mask 內人體組織像素佔比（>1%）作為過濾門檻，剔除無組織的純空氣切片。
- 
-- 雙格式支援
-  - 支援將前處理後的數據直接輸出為 .npy 矩陣格式；同時優化了 DataLoader，使其能在訓練時動態兼容 .npy 與 .dcm 兩種輸入格式。 
+- CT 軟組織 HU Clipping
+  - 在 CT 影像套用 Mask 後且進行 Normalization 之前，先將人體內部數值嚴格截斷（Clipping）至大腦軟組織關注的 [-150,150] HU 區間，隨後再線性映射歸一化至 [-1,1]，以大幅提高大腦灰白質與病灶的對比度分辨率。
 
 - Loss Curve 走勢圖：<br/>
   - Epochs 50：
-![Epochs 50](/results/1_medical_run/loss_convergence_smooth.png)
+![Epochs 50](/results/mask_run/loss_convergence_smooth.png)
+  - Epochs 200：
+![Epochs 200](/results/mask_run_200/loss_convergence_smooth.png)
 
-- 數據比較：進行 Liang(2019)論文數據、Phase 1 數據與進行前處理後的數據比較。Phase 1 數據與進行前處理後的數據都是進行 50 epochs 的比較。<br/>
+- 數據比較：進行 Liang(2019)論文數據、Phase 1 數據與此階段的數據比較。Phase 1 數據與進行前處理後的數據都是進行 200 epochs 的比較。<br/>
 
 | 比較項目 | MAE | RMSE | SSIM | PSNR |
 | --- | --- | --- | --- | --- |
 | Liang(2019)論文數據 | 29.85 ± 4.94 | 84.46 ± 12.40 | 0.85 ± 0.03 | 30.65 ± 1.36 |
-| Phase 1 | 24.27 ± 5.64 | 92.51 ± 18.27 | 0.95 ± 0.01 | 33.06 ± 1.92 |
+| Phase 1 | 14.69 ± 4.13 | 75.65 ± 20.41 | 0.96 ± 0.02 | 34.91 ± 2.29 |
+| Phase 4 | 13.59 ± 2.22 | 87.04 ± 10.83 | 0.98 ± 0.003 | 33.46 ± 1.06 |
 <br/>
 
 - 實際圖片比較：<br/>
 > 完整檔案為 /results 的 Preprocessing.html<br/>
 
+![MedicalVSMask](/results/html_img/MedicalVSMask.png)
 ![Preprocessing](/results/html_img/Preprocessing.png)
 
 # Engineering & Evaluation
